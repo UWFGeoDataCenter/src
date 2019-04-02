@@ -2,3 +2,5 @@
 auth_file.txt
 agol.auth
 agol.txt
+*.csv
+*.zip
