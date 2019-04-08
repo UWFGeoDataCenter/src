@@ -4,3 +4,4 @@ agol.auth
 agol.txt
 *.csv
 *.zip
+auth_file.config
