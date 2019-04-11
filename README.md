@@ -1,2 +1,1 @@
-# src
-scripts to connect SQL to AGOL
+### config file (.ini) setup
