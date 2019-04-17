@@ -18,6 +18,8 @@ USER =
 PW = 
 
 [SQL]
+; ODBC Driver
+odbcDRVR = 
 ; SQL server name
 SERVER =
 ; SQL server database
