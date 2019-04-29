@@ -19,7 +19,7 @@ PW =
 
 [SQL]
 ; ODBC Driver
-odbcDRVR = 
+odbcDRVR = {SQL Server}
 ; SQL server name
 SERVER = 
 ; SQL server database
@@ -28,29 +28,6 @@ DB =
 USER = 
 ; SQL password
 PW =
-
-; create temporary table
-;; XXXXXXXX = new temp table name
-;; YYYYYYYY = new temp field name(s) and data type(s)
-createTEMP = CREATE TABLE [dbo].[XXXXXXXX](YYYYYYYY)
-
-; insert CSV into temporary table
-;; XXXXXXXX = new temp table name
-;; YYYYYYYY = new temp field name(s)
-;; Make sure brackets surround any added fields followed by commas (except for the last field)
-;; the number of ? should equal the number of fields with each separated by commas
-csvINSERT = INSERT INTO dbo.XXXXXXXX([YYYYYYYY]) values (?)
-
-; update main table with new rows
-;; AAAAAAAA = database name
-;; BBBBBBBB = original table name
-;; XXXXXXXX = new temp table name
-;; YYYYYYYY = new temp field name(s)
-updateTABLE = INSERT INTO [AAAAAAAA].[dbo].[BBBBBBBB](YYYYYYYY) SELECT * FROM [AAAAAAAA].[dbo].[XXXXXXXX] UNION SELECT * FROM [AAAAAAAA].[dbo].[BBBBBBBB] EXCEPT SELECT * FROM [AAAAAAAA].[dbo].[XXXXXXXX] INTERSECT SELECT * FROM [AAAAAAAA].[dbo].[BBBBBBBB]
-
-; delete temporary table
-;; XXXXXXXX = new temp table name
-delTEMP = DROP TABLE [dbo].[XXXXXXXX]
 
 [SCRIPT]
 ; Set environment workspace
@@ -63,5 +40,3 @@ csvOUTPUT =
 itemID = 
 ; ZIP folder location
 zipLOC = 
-; ZIP folder extraction location
-zipExLOC = 
