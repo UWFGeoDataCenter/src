@@ -1,5 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; methods obtained from https://hackernoon.com/4-ways-to-manage-the-configuration-in-python-4623049e841b
+; INI configuration methods obtained from
+; https://hackernoon.com/4-ways-to-manage-the-configuration-in-python-4623049e841b
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Notes:
 ;	1. Do not use quotation marks or apostrophes for ANY variables
@@ -12,8 +13,8 @@
 ; Keys:
 ;   1. x1x => temporary table that stores AGOL data updates; find/replace this key with the name of the table
 ;   2. x2x => temporary table that stores SQL data updates; find/replace this key with the name of the table
-;   3. x3x => x3xuction table that the temp table will be compared against; find/replace this key
-;             with the name of the live/x3xuction table
+;   3. x3x => production table that the temp table will be compared against; find/replace this key
+;             with the name of the live/production table
 
 [AGOL]
 ; AGOL URL
@@ -45,40 +46,40 @@ PW =
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [SCRIPT]
 ; AGOL Item ID
-itemID =
+itemID = 
 
 ; Set output CSV title
-csvTITLE =
+csvTITLE = 
 
 ; Output zip file location/extraction
-csvLOC =
+csvLOC = 
 
 ; ZIP folder location
-zipLOC =
+zipLOC = 
 
 ; csv Location
-csvDOC =
+csvDOC = 
 
 ; create temp tables
-newx1x = CREATE TABLE [dbo].[src_x1x]([OBJECTID] INT,[BuildingIdent] varchar(100),[Description] varchar(50),[Class] varchar(3),[TypeCode] INT, [GlobalID] varchar(50))
+newTEMP1 = CREATE TABLE [dbo].[x1x]([FID] INT,[BuildingID] varchar(100),[Description] varchar(50),[Classrooms] varchar(3),[TypeCode] INT, [X] FLOAT, [Y] FLOAT, [Email] varchar(50))
 
-newx2x = CREATE TABLE [dbo].[src_x2x]([OBJECTID] INT,[BuildingIdent] varchar(100),[Description] varchar(50),[Class] varchar(3),[TypeCode] INT, [GlobalID] varchar(50))
+newTEMP2 = CREATE TABLE [dbo].[x2x]([FID] INT,[BuildingID] varchar(100),[Description] varchar(50),[Classrooms] varchar(3),[TypeCode] INT, [X] FLOAT, [Y] FLOAT, [Email] varchar(50))
 
 ; insert rows from CSV
-csv2TEMP = INSERT INTO [dbo].[src_x1x]([OBJECTID],[BuildingIdent],[Description],[Class],[TypeCode],[GlobalID]) values (?,?,?,?,?,?)
+csv2TEMP = INSERT INTO [dbo].[x1x]([FID],[BuildingID],[Description],[Classrooms],[TypeCode],[X],[Y],[Email]) values (?,?,?,?,?,?,?,?)
 
 ; SQL Insert Statements
-newINS1 = INSERT INTO [dbo].[src_x3x](OBJECTID,BuildingIdent,Description,Class,TypeCode,GlobalID) SELECT * FROM [dbo].[src_x1x] as B WHERE NOT EXISTS (SELECT 1 FROM [dbo].[src_x3x] as A WHERE A.GlobalID = B.GlobalID)
+newINS1 = INSERT INTO [dbo].[x3x](FID,BuildingID,Description,Classrooms,TypeCode,X,Y,Email) SELECT * FROM [dbo].[x1x] as B WHERE NOT EXISTS (SELECT 1 FROM [dbo].[x3x] as A WHERE A.FID = B.FID)
 
-newINS2 = INSERT INTO [dbo].[src_x2x](OBJECTID,BuildingIdent,Description,Class,TypeCode,GlobalID)(SELECT * FROM [dbo].[src_x3x] EXCEPT SELECT * FROM [dbo].[src_x1x])
+newINS2 = INSERT INTO [dbo].[x2x](FID,BuildingID,Description,Classrooms,TypeCode,X,Y,Email)(SELECT * FROM [dbo].[x3x] EXCEPT SELECT * FROM [dbo].[x1x])
 
 ; delete temporary tables
-delx1x = DROP TABLE [dbo].[src_x1x]
+delTEMP1 = DROP TABLE [dbo].[x1x]
 
-delx2x = DROP TABLE [dbo].[src_x2x]
+delTEMP2 = DROP TABLE [dbo].[x2x]
 
 ; SQL to CSV script
-SQL2CSV = SELECT * FROM [dbo].[src_x2x]
+SQL2CSV = SELECT * FROM [dbo].[x2x]
 
 ; SQL to CSV output location
 sql2CSVout =

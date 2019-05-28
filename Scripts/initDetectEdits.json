@@ -1,0 +1,22 @@
+{
+   "email":{
+      "recipients":["JohnSmith@acme.com"],
+      "from":"acme@acme.com",
+      "subject":"New features has been added to your service",
+      "text":"Hi Team,\n\nYou are receiving this e-mail because features have been added in:\n",
+      "server":["smtp.acme.com", 0, "", ""],
+      "onemailflag":1
+   },
+   "service":{
+      "portalURL":"https://www.arcgis.com",
+      "fsURL":"https://services2.arcgis.com/fJJEXNgxjn0dpNsi/arcgis/rest/services/service_20dc5e3eab3f4efab8fde88f6027911b/FeatureServer",
+      "fsLayerNum":0,
+      "serviceuser":"yourusername",
+      "servicepw":"yourpassword",
+      "fieldstoreport":["*"],
+      "viewerMapLevel":19
+   },
+   "filenames":{
+      "lasteditfile":"lastedit.json"
+   }
+}
