@@ -1,5 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; methods obtained from https://hackernoon.com/4-ways-to-manage-the-configuration-in-python-4623049e841b
+; INI configuration methods obtained from
+; https://hackernoon.com/4-ways-to-manage-the-configuration-in-python-4623049e841b
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Notes:
 ;	1. Do not use quotation marks or apostrophes for ANY variables
@@ -8,35 +9,79 @@
 ;
 ;	2. Use double-backslashes for file paths
 ;		Example -> zipLOC = C:\\Data\\table.zip
+;
+; Keys:
+;   1. x1x => temporary table that stores AGOL data updates; find/replace this key with the name of the table
+;   2. x2x => temporary table that stores SQL data updates; find/replace this key with the name of the table
+;   3. x3x => production table that the temp table will be compared against; find/replace this key
+;             with the name of the live/production table
 
 [AGOL]
 ; AGOL URL
-URL = 
+URL =
+
 ; AGOL username
-USER = 
+USER =
+
 ; AGOL password
 PW = 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [SQL]
 ; ODBC Driver
-odbcDRVR = {SQL Server}
+SQLDRVR = {SQL Server}
+
 ; SQL server name
-SERVER = 
+SERVER =
+
 ; SQL server database
-DB = 
+DB =
+
 ; SQL username
-USER = 
+USER =
+
 ; SQL password
 PW =
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [SCRIPT]
-; Set environment workspace
-workSPACE = 
-; Set output CSV title
-csvTITLE = 
-; Output zip file location
-csvOUTPUT = 
 ; AGOL Item ID
 itemID = 
+
+; Set output CSV title
+csvTITLE = 
+
+; Output zip file location/extraction
+csvLOC = 
+
 ; ZIP folder location
 zipLOC = 
+
+; csv Location
+csvDOC = 
+
+; create temp tables
+newTEMP1 = CREATE TABLE [dbo].[x1x]([FID] INT,[BuildingID] varchar(100),[Description] varchar(50),[Classrooms] varchar(3),[TypeCode] INT, [X] FLOAT, [Y] FLOAT, [Email] varchar(50))
+
+newTEMP2 = CREATE TABLE [dbo].[x2x]([FID] INT,[BuildingID] varchar(100),[Description] varchar(50),[Classrooms] varchar(3),[TypeCode] INT, [X] FLOAT, [Y] FLOAT, [Email] varchar(50))
+
+; insert rows from CSV
+csv2TEMP = INSERT INTO [dbo].[x1x]([FID],[BuildingID],[Description],[Classrooms],[TypeCode],[X],[Y],[Email]) values (?,?,?,?,?,?,?,?)
+
+; SQL Insert Statements
+newINS1 = INSERT INTO [dbo].[x3x](FID,BuildingID,Description,Classrooms,TypeCode,X,Y,Email) SELECT * FROM [dbo].[x1x] as B WHERE NOT EXISTS (SELECT 1 FROM [dbo].[x3x] as A WHERE A.FID = B.FID)
+
+newINS2 = INSERT INTO [dbo].[x2x](FID,BuildingID,Description,Classrooms,TypeCode,X,Y,Email)(SELECT * FROM [dbo].[x3x] EXCEPT SELECT * FROM [dbo].[x1x])
+
+; delete temporary tables
+delTEMP1 = DROP TABLE [dbo].[x1x]
+
+delTEMP2 = DROP TABLE [dbo].[x2x]
+
+; SQL to CSV script
+SQL2CSV = SELECT * FROM [dbo].[x2x]
+
+; SQL to CSV output location
+sql2CSVout =
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
