@@ -1,4 +1,4 @@
-USE [src_db]
+USE [src_db2]
 GO
 
 /****** Object:  Table [dbo].[src_prod]    Script Date: 5/28/2019 2:16:12 PM ******/
@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[src_prod](
 	[TypeCode] [int] NULL,
 	[X] [float] NULL,
 	[Y] [float] NULL,
-	[Email] [varchar](50) NULL
+	[email] [varchar](50) NULL
 ) ON [PRIMARY]
 
 GO

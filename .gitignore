@@ -13,3 +13,4 @@ config_jm.ini
 *.docx
 srcdb_backup
 Documentation/DataSynchronization_Instructions.docx
+Scripts/script_section_update.txt
