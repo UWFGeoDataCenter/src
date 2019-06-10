@@ -15,3 +15,5 @@ srcdb_backup
 Documentation/DataSynchronization_Instructions.docx
 Scripts/script_section_update.txt
 Notebooks/testing.sql
+*.ipynb_checkpoints
+Notebooks
