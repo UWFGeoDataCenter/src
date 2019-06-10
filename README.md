@@ -1,30 +1,13 @@
-:: Project ::
-  Data Synchronization: MS SQL Server & ArcGIS Online
+Project: Data Synchronization (MS SQL Server & ArcGIS Online)
 
-:: Description ::
-  This project is the result of a collaboration between Santa Rosa County and the University of West Florida's GeoData center. 
-  For more on this project see the full documentation for this project [here.]    (https://github.com/UWFGeoDataCenter/src/blob/master/Documentation/DataSynchronization_Instructions.pdf)
+Description: This project is the result of a collaboration between Santa Rosa County and the University of West Florida's GeoData center. For more on this project see the full documentation for this project [here.]    (https://github.com/UWFGeoDataCenter/src/blob/master/Documentation/DataSynchronization_Instructions.pdf)
 
-:: Included Necessary Items ::
-  1 Python Script (.py)
-    src > Scripts > AGOLSQLSync.py
-  1 Configuration file (.ini)
-    src > config.template
-  1 Instructions document (PDF)
-    src > Documents > DataSynchronization_Instructions.pdf
+Necessary Items: 1 Python Script (.py), 1 Configuration file (.ini), 1 Instructions document (PDF)
 
-:: Included Miscellaneous Items ::
-  1 Jupyter Notebook (.ipynb)
-    src > Notebooks > AGOLSQLSync.ipynb
+Miscellaneous Items: 1 Jupyter Notebook (.ipynb)
 
-:: Installation ::
-  1. Download necessary items (included above) to preferred local/server location
-  2. Review provided instructions (DataSynchronization_Instructions PDF)
-  3. Update script and configuration file per instructions
+Installation: Download necessary items (included above) to preferred local/server location. Review provided instructions (DataSynchronization_Instructions PDF). Update script and configuration file per instructions.
 
-:: Credits ::
-  Script Design --> Jeremy Mullins (UWF Graduate Student), Derek Morgan, PhD (UWF Adjunct Professor)
-  Configuration File Design --> Jeremy Mullins (UWF Graduate Student), Derek Morgan, PhD (UWF Adjunct Professor)
-  Document Design --> Jeremy Mullins (UWF Graduate Student)
+Credits: Jeremy Mullins (UWF Graduate Student); Derek Morgan, PhD (UWF Assistant Professor - GeoData Center); Leigh Jeudevine (GIS Research Scientist - GeoData Center)
 
-:: Licensing ::
+Licensing:
