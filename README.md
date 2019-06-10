@@ -1,6 +1,6 @@
 Project: Data Synchronization (MS SQL Server & ArcGIS Online)
 
-Description: This project is the result of a collaboration between Santa Rosa County and the University of West Florida's GeoData center. For more on this project see the full documentation for this project [here.](https://github.com/UWFGeoDataCenter/src/blob/master/Documentation/DataSynchronization_Instructions.pdf)
+Description: This project is the result of a collaboration between Santa Rosa County and the University of West Florida's GeoData Center. For more on this project see the full documentation for this project [here.](https://github.com/UWFGeoDataCenter/src/blob/master/Documentation/DataSynchronization_Instructions.pdf)
 
 Items: 1 Python Script (.py), 1 Configuration file (.template), 1 Instructions document (PDF)
 
